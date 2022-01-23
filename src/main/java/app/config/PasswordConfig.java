@@ -1,4 +1,4 @@
-package task_312.config;
+package app.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

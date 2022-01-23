@@ -1,4 +1,4 @@
-package task_312.model;
+package app.model;
 
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,9 +12,11 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Table(name = "users", indexes = {@Index(columnList = "name, last_name ASC")})
-public final class User extends AbstractEntity<Long> implements UserDetails {
-    private static final long serialVersionUID = 2715270014679085151L;
+@Table(name = "users")
+public final class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
@@ -51,57 +53,41 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
         this.roles = roles;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Long getId() {
+        return id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setId(Long id) { this.id = id; }
+
+    public boolean isNew() {
+        return getId() == null;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getFirstName() { return firstName; }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
+    public String getLastName() { return lastName; }
 
-    public String getEmail() {
-        return email;
-    }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getFullName() { return firstName + " " + lastName; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getEmail() { return email; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public int getAge() {
-        return age;
-    }
+    public String getPassword() { return password; }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    public int getAge() { return age; }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    public void setAge(int age) { this.age = age; }
+
+    public Set<Role> getRoles() { return roles; }
+
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 
     public boolean hasRole(int roleId) {
         if (null == roles || 0 == roles.size()) {

@@ -1,8 +1,8 @@
-package task_312.repository;
+package app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
-import task_312.model.User;
+import app.model.User;
 
 import java.util.Optional;
 

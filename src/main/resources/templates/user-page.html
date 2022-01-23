@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 
-<head th:replace="fragments/head-frag :: head"><title>User page</title></head>
+<head th:replace="fragments/head :: head"><title>User page</title></head>
 
 <body>
 
-<header th:replace="fragments/header-frag :: header"></header>
+<header th:replace="fragments/header :: header"></header>
 
 <div class="container-fluid d-flex flex-row vh-100 p-0">
 
-    <div th:replace="fragments/nav-frag :: navigation(currentPage='user')"></div>
+    <div th:replace="fragments/navigation :: navigation(currentPage='user')"></div>
 
     <div class="flex-grow-1 bg-light p-3">
         <h1>User information-page</h1>
@@ -31,13 +31,13 @@
                     </thead>
                     <tbody>
                     <tr class="border-top bg-light" th:object="${user}">
-                        <td th:text="*{id}"/>
-                        <td th:text="*{firstName}"/>
-                        <td th:text="*{lastName}"/>
-                        <td th:text="*{age}"/>
-                        <td th:text="*{email}"/>
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{firstName}"></td>
+                        <td th:text="*{lastName}"></td>
+                        <td th:text="*{age}"></td>
+                        <td th:text="*{email}"></td>
                         <td><th:block th:each="role : *{getRoles()}">
-                            &nbsp;<span th:text="${role.name}"/>
+                            &nbsp;<span th:text="${role.name}"></span>
                         </th:block></td>
                     </tr>
                     </tbody>

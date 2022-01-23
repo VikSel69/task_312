@@ -1,24 +1,23 @@
-package task_312.model;
+package app.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "roles")
-public final class Role extends AbstractEntity<Integer> implements GrantedAuthority {
-    private static final long serialVersionUID = 7217778059836250424L;
+public final class Role implements GrantedAuthority {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Role() {
     }
@@ -30,6 +29,10 @@ public final class Role extends AbstractEntity<Integer> implements GrantedAuthor
     public Role(Integer id) {
         this.setId(id);
     }
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public String getName() {
         return name;

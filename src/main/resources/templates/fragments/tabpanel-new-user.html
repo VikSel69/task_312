@@ -1,0 +1,42 @@
+<div class="tab-pane fade" id="nav-user_form" role="tabpanel">
+    <div class="row border">
+        <h5 class="m-2">Add new user</h5>
+    </div>
+    <div class="row border bg-white pb-2">
+        <div class="container col-6 form-group text-center">
+            <form role="form" th:action="@{/admin}" th:method="post" th:object="${user}">
+            <div>
+                <label for="newFirstName">First name</label>
+                <input type="text" class="form-control" placeholder="Enter first name" th:field="*{firstName}" id="newFirstName">
+            </div>
+            <div>
+                <label for="newLastName">Last name</label>
+                <input type="text" class="form-control" placeholder="Enter last name" th:field="*{lastName}" id="newLastName">
+            </div>
+            <div>
+                <label for="newAge">Age</label>
+                <input type="number" class="form-control" th:field="*{age}" id="newAge">
+            </div>
+            <div>
+                <label for="newEmail">E-mail</label>
+                <input type="text" class="form-control" placeholder="Enter e-mail" th:field="*{email}" id="newEmail" autocomplete="username">
+            </div>
+            <div id="password-div">
+                <label for="newPassword">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="newPassword" name="password" autocomplete="current-password">
+            </div>
+            <div>
+                <label for="newRoles">Role</label>
+                <select multiple class="form-control" id="newRoles" name="roles">
+                    <option th:each="role : ${allRoles}"
+                            th:selected="*{hasRole('__${role.id}__')}" th:text="${role.name}"
+                            th:value="${role.id}">
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success mt-3">Add new User</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
